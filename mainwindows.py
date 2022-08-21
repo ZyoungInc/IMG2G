@@ -19,7 +19,7 @@ class Window(QWidget):
         self.timeLayout = QHBoxLayout()
         self.contoursLayout = QHBoxLayout()
         self.setLayout(self.mainLayout)
-        self.setWindowTitle("Image To Gcode V1.0")
+        self.setWindowTitle("印章雕刻 V1.0 by Yang")
         
         self.imageLabel = QLabel("image")
         
@@ -54,7 +54,7 @@ class Window(QWidget):
         
         self.timeLabel = QLabel(u"雕刻速度:")
         self.timeDoubleSpinBox = QDoubleSpinBox()
-        self.timeDoubleSpinBox.setValue(200)
+        self.timeDoubleSpinBox.setValue(50)
         self.timeLayout.addWidget(self.timeLabel)
         self.timeLayout.addWidget(self.timeDoubleSpinBox)
         
@@ -77,7 +77,7 @@ class Window(QWidget):
         self.loadImageButton.clicked.connect(self.LoadImageButtonClicked)
         self.previewButton = QPushButton(u"预览")
         self.previewButton.clicked.connect(self.ThresholdValChange)
-        self.makeCodeButton = QPushButton(u"生成G代码")
+        self.makeCodeButton = QPushButton(u"开始雕刻！")
         self.makeCodeButton.clicked.connect(self.MakeGcode)
         
         
@@ -149,7 +149,7 @@ class Window(QWidget):
         self.imageLabel.setPixmap(QPixmap(self.resultImage))
         
     def MakeGcode(self):
-        path = QFileDialog.getSaveFileName(self, u"选择保存路径", "", " (*.gcode)")
+        path = QFileDialog.getSaveFileName(self, u"选择保存路径", "", " (*.nc)")
         if path == "":
             QMessageBox.warning(self, u"发生错误", u"路径错误！！")
             return 
